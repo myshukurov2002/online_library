@@ -1,0 +1,29 @@
+###  LOGIN
+GET http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "myshukurov@gmail.com",
+  "password": "123"
+}
+
+###  LOGIN
+GET http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "shukurovmuhammadyusuf2@gmail.com",
+  "password": "123"
+}
+
+
+### REGISTRATION
+POST http://localhost:8080/api/v1/auth/registr
+Content-Type: application/json
+
+{
+  "firstName": "Quzivoy",
+  "lastName": "Buriyev",
+  "email": "shukurovmuhammadyusuf2@gmail.com",
+  "password": "123"
+}

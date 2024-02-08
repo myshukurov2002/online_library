@@ -1,0 +1,32 @@
+### Create category
+POST localhost:8080/api/v1/category/create
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDczNDQ4MDAsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiQURNSU4iLCJTVVBFUl9BRE1JTiIsIk1PREVSQVRPUiIsIlVTRVIiXSwiZXhwIjoxNzA4MjA4ODAwLCJpc3MiOiJ0aGluayBzdG9yZSJ9.jCyxd1sB9TyAUXooXKyt94K97tu-61K4eUxmiFs1fbfjQNCMLwLiyqZVJHfbkH97N7lqP8f3qzIyxWw34KSFgQ
+Content-Type: application/json
+
+{
+  "name": "Ertaklar"
+}
+
+
+### Update category
+PUT localhost:8080/api/v1/category/update/dec9626f-2f73-4f1e-904f-f4eb789e44b2
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcwODA4NDgsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiVVNFUiIsIlNVUFBMSUVSIiwiTU9ERVJBVE9SIiwiU1VQRVJfQURNSU4iLCJBRE1JTiJdLCJleHAiOjE3MDc5NDQ4NDgsImlzcyI6InRoaW5rIHN0b3JlIn0.lfe5MAFj4vSSCdFjprEoKM0a2zvZvYfHlfBgR_T83nwSxphElv8wgjDYZjHkqU1fg4y3B4Yr7K3EgyzczrDpDA
+Content-Type: application/json
+
+{
+  "name": "Tentak"
+}
+
+###
+DELETE localhost:8080/api/v1/category/delete/dec9626f-2f73-4f1e-904f-f4eb789e44b2
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcwODA4NDgsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiVVNFUiIsIlNVUFBMSUVSIiwiTU9ERVJBVE9SIiwiU1VQRVJfQURNSU4iLCJBRE1JTiJdLCJleHAiOjE3MDc5NDQ4NDgsImlzcyI6InRoaW5rIHN0b3JlIn0.lfe5MAFj4vSSCdFjprEoKM0a2zvZvYfHlfBgR_T83nwSxphElv8wgjDYZjHkqU1fg4y3B4Yr7K3EgyzczrDpDA
+
+###Get category
+GET localhost:8080/api/v1/category/open/get-all
+
+### Get By Id
+GET http://localhost:8080/api/v1/category/open/get-by-id/dec9626f-2f73-4f1e-904f-f4eb789e44b2
+
+
+
+
