@@ -1,6 +1,7 @@
 package com.company.cart.services;
 
 import com.company.base.ApiResponse;
+import com.company.book.dtos.BookResp;
 import com.company.book.servies.BookService;
 import com.company.cart.dtos.CartCr;
 import com.company.cart.dtos.CartResp;
@@ -88,7 +89,25 @@ public class CartServiceImpl implements CartService {
     @Override
     public ApiResponse<CartResp> update(UUID id) {
 
-        CartEntity cart = get(id);
+        CartEntity cart = null;
+        try {
+            cart = get(id);
+
+        } catch (ItemNotFoundException e) {
+
+            BookResp book = bookService
+                    .getById(id)
+                    .data();
+
+            cart = CartEntity
+                    .builder()
+                    .cartStatus(true)
+                    .userId(securityUtil.getCurrentUserId())
+                    .bookId(book.id())
+                    .build();
+
+            return new ApiResponse<>(true, toDto(cart));
+        }
 
         cart.setCartStatus(true);
         cartRepository.save(cart);
