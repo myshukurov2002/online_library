@@ -1,9 +1,9 @@
-package com.company.cart.dtos;
+package com.company.basket.dtos;
 
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
-public record CartCr(
+public record BasketCr(
         @NotNull(message = "{cart.book.notNull}")
         UUID bookId
 ) {

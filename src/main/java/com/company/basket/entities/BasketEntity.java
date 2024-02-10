@@ -1,4 +1,4 @@
-package com.company.cart.entities;
+package com.company.basket.entities;
 
 import com.company.base.BaseEntity;
 import com.company.book.entities.BookEntity;
@@ -13,8 +13,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "cart")
-public class CartEntity extends BaseEntity {
+@Table(name = "basket")
+public class BasketEntity extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(

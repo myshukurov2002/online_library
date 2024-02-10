@@ -7,6 +7,7 @@ Content-Type: application/json
   "title": "Ertak",
   "author": "Ertak",
   "description": "Ertak",
+  "price": "5600",
   "categoryId": "dec9626f-2f73-4f1e-904f-f4eb789e44b2",
   "photoId": "d31f0ad8-3c42-4c1a-aacf-94cc2074536a",
   "pdfId": "7e9319ea-8417-41ee-8a88-306b85515e7e"

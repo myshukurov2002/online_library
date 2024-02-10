@@ -7,6 +7,7 @@ import com.company.category.entities.CategoryEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Setter
@@ -36,6 +37,9 @@ public class BookEntity extends BaseEntity {
             columnDefinition = "text"
     )
     private String description;
+
+    @Column
+    BigDecimal price = BigDecimal.ZERO;
 
     @ManyToOne
     @JoinColumn(name = "category_id", insertable = false, updatable = false)

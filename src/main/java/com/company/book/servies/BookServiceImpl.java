@@ -6,6 +6,7 @@ import com.company.book.dtos.BookCr;
 import com.company.book.dtos.BookResp;
 import com.company.book.dtos.BookUpd;
 import com.company.book.entities.BookEntity;
+import com.company.book.mapper.BookDtoMapper;
 import com.company.book.repositories.BookRepository;
 import com.company.category.dtos.CategoryResp;
 import com.company.category.services.CategoryService;
@@ -26,9 +27,8 @@ import java.util.UUID;
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
-    private final CategoryService categoryService;
-    private final AttachService attachService;
     private final MessageService messageService;
+    private final BookDtoMapper bookDtoMapper;
 
     @Override
     public ApiResponse<BookResp> create(BookCr dto) {
@@ -45,21 +45,22 @@ public class BookServiceImpl implements BookService {
 
         log.info("book created id: " + book.getId());
 
-        return new ApiResponse<>(true, toDto(book));
+        return new ApiResponse<>(true, bookDtoMapper.apply(book));
     }
 
     @Override
-    public ApiResponse<BookResp> update(UUID id, BookUpd dto) {
+    public ApiResponse<BookResp> update(UUID id, BookUpd bookUpd) {
 
         BookEntity book = get(id);
 
-        book.setTitle(dto.title());
-        book.setAuthor(dto.author());
-        book.setDescription(dto.description());
+        book.setTitle(bookUpd.title());
+        book.setAuthor(bookUpd.author());
+        book.setDescription(bookUpd.description());
+        book.setPrice(bookUpd.price());
 
         log.info("book updated id: " + book.getId());
 
-        return new ApiResponse<>(true, toDto(book));
+        return new ApiResponse<>(true, bookDtoMapper.apply(book));
     }
 
     @Override
@@ -78,7 +79,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public ApiResponse<BookResp> getById(UUID id) {
 
-        return new ApiResponse<>(true, toDto(get(id)));
+        return new ApiResponse<>(true, bookDtoMapper.apply(get(id)));
     }
 
     @Override
@@ -87,7 +88,7 @@ public class BookServiceImpl implements BookService {
         List<BookResp> list = bookRepository
                 .findAllByVisibilityTrue()
                 .stream()
-                .map(this::toDto)
+                .map(bookDtoMapper)
                 .toList();
 
         return new ApiResponse<>(true, list);
@@ -99,7 +100,7 @@ public class BookServiceImpl implements BookService {
         List<BookResp> list = bookRepository
                 .findAllByCategoryIdAndVisibilityTrue(categoryId)
                 .stream()
-                .map(this::toDto)
+                .map(bookDtoMapper)
                 .toList();
 
         return new ApiResponse<>(true, list);
@@ -118,31 +119,9 @@ public class BookServiceImpl implements BookService {
                 .title(dto.title())
                 .author(dto.author())
                 .description(dto.description())
+                .price(dto.price())
                 .categoryId(dto.categoryId())
                 .pdfId(dto.pdfId())
                 .photoId(dto.photoId()).build();
-    }
-
-    private BookResp toDto(BookEntity book) {
-
-        return BookResp.builder()
-                .id(book.getId())
-                .title(book.getTitle())
-                .author(book.getAuthor())
-                .description(book.getDescription())
-                .category(
-                        categoryService
-                                .getById(book.getCategoryId())
-                                .data()
-                )
-                .photo(
-                        attachService
-                                .toDTO(attachService.get(book.getPhotoId()))
-                )
-                .pdf(
-                        attachService
-                                .toDTO(attachService.get(book.getPdfId()))
-                ).build();
-
     }
 }

@@ -1,12 +1,12 @@
-package com.company.cart.services;
+package com.company.basket.services;
 
 import com.company.base.ApiResponse;
 import com.company.book.dtos.BookResp;
 import com.company.book.servies.BookService;
-import com.company.cart.dtos.CartCr;
-import com.company.cart.dtos.CartResp;
-import com.company.cart.entities.CartEntity;
-import com.company.cart.repositories.CartRepository;
+import com.company.basket.dtos.BasketCr;
+import com.company.basket.dtos.BasketResp;
+import com.company.basket.entities.BasketEntity;
+import com.company.basket.repositories.BasketRepository;
 import com.company.config.i18n.MessageService;
 import com.company.config.security.utils.securityUtil;
 import com.company.expections.exp.DuplicateItemException;
@@ -21,24 +21,24 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class CartServiceImpl implements CartService {
+public class BasketServiceImpl implements BasketService {
 
-    private final CartRepository cartRepository;
+    private final BasketRepository basketRepository;
     private final BookService bookService;
     private final MessageService messageService;
 
     @Override
-    public ApiResponse<CartResp> create(CartCr cartCr) {
+    public ApiResponse<BasketResp> create(BasketCr basketCr) {
 
-        cartRepository
-                .findByBookIdAndUserIdAndVisibilityTrue(cartCr.bookId(), securityUtil.getCurrentUserId())
+        basketRepository
+                .findByBookIdAndUserIdAndVisibilityTrue(basketCr.bookId(), securityUtil.getCurrentUserId())
                 .ifPresent(c -> {
                     throw new DuplicateItemException();
                 });
 
-        CartEntity cart = toEntity(cartCr);
+        BasketEntity cart = toEntity(basketCr);
 
-        cartRepository.save(cart);
+        basketRepository.save(cart);
 
         log.info("cart created id: " + cart.getId());
 
@@ -48,24 +48,24 @@ public class CartServiceImpl implements CartService {
     @Override
     public ApiResponse<String> delete(UUID id) {
 
-        CartEntity cart = get(id);
+        BasketEntity cart = get(id);
 
         cart.setVisibility(false);
-        cartRepository.save(cart);
+        basketRepository.save(cart);
 
         return new ApiResponse<>(true, messageService.getMessage("success.deleted"));
     }
 
     @Override
-    public ApiResponse<CartResp> getById(UUID id) {
+    public ApiResponse<BasketResp> getById(UUID id) {
 
         return new ApiResponse<>(true, toDto(get(id)));
     }
 
     @Override
-    public ApiResponse<List<CartResp>> getAllByOwner() {
+    public ApiResponse<List<BasketResp>> getAllByOwner() {
 
-        List<CartResp> carts = cartRepository
+        List<BasketResp> carts = basketRepository
                 .findAllByUserIdAndCartStatusFalseAndVisibilityTrue(securityUtil.getCurrentUserId())
                 .stream()
                 .map(this::toDto)
@@ -75,9 +75,9 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public ApiResponse<List<CartResp>> getAllPurchasedBooks() {
+    public ApiResponse<List<BasketResp>> getAllPurchasedBooks() {
 
-        List<CartResp> carts = cartRepository
+        List<BasketResp> carts = basketRepository
                 .findAllByUserIdAndCartStatusTrueAndVisibilityTrue(securityUtil.getCurrentUserId())
                 .stream()
                 .map(this::toDto)
@@ -87,9 +87,9 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public ApiResponse<CartResp> update(UUID id) {
+    public ApiResponse<BasketResp> update(UUID id) {
 
-        CartEntity cart = null;
+        BasketEntity cart = null;
         try {
             cart = get(id);
 
@@ -99,7 +99,7 @@ public class CartServiceImpl implements CartService {
                     .getById(id)
                     .data();
 
-            cart = CartEntity
+            cart = BasketEntity
                     .builder()
                     .cartStatus(true)
                     .userId(securityUtil.getCurrentUserId())
@@ -110,21 +110,21 @@ public class CartServiceImpl implements CartService {
         }
 
         cart.setCartStatus(true);
-        cartRepository.save(cart);
+        basketRepository.save(cart);
 
         return new ApiResponse<>(true, toDto(cart));
     }
 
-    private CartEntity get(UUID id) {
+    private BasketEntity get(UUID id) {
 
-        return cartRepository
+        return basketRepository
                 .findByIdAndVisibilityTrue(id)
                 .orElseThrow(ItemNotFoundException::new);
     }
 
-    private CartResp toDto(CartEntity cart) {
+    private BasketResp toDto(BasketEntity cart) {
 
-        return CartResp.builder()
+        return BasketResp.builder()
                 .id(cart.getId())
                 .book(
                         bookService
@@ -133,11 +133,11 @@ public class CartServiceImpl implements CartService {
                 ).build();
     }
 
-    private CartEntity toEntity(CartCr cartCr) {
+    private BasketEntity toEntity(BasketCr basketCr) {
 
-        return CartEntity.builder()
+        return BasketEntity.builder()
                 .userId(securityUtil.getCurrentUserId())
                 .cartStatus(false)
-                .bookId(cartCr.bookId()).build();
+                .bookId(basketCr.bookId()).build();
     }
 }
