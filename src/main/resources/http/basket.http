@@ -1,41 +1,41 @@
-### Create cart
-POST localhost:8080/api/v1/cart/create
+### Create basket
+POST localhost:8082/api/v1/basket/create
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcwODA4NDgsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiVVNFUiIsIlNVUFBMSUVSIiwiTU9ERVJBVE9SIiwiU1VQRVJfQURNSU4iLCJBRE1JTiJdLCJleHAiOjE3MDc5NDQ4NDgsImlzcyI6InRoaW5rIHN0b3JlIn0.lfe5MAFj4vSSCdFjprEoKM0a2zvZvYfHlfBgR_T83nwSxphElv8wgjDYZjHkqU1fg4y3B4Yr7K3EgyzczrDpDA
 Content-Type: application/json
 
 {
-  "bookId": "88759f49-49aa-45a7-bae9-9f76f0f0bfd4"
+  "bookId": "5b735b4b-5a80-4adc-98b4-7c714bf2618b"
 }
 
 
-### Update cart
-PUT localhost:8080/api/v1/cart/update/fcac43b4-99e9-40d6-924d-5f0a0faa0bf8
+### Update basket
+PUT localhost:8082/api/v1/basket/buy/147ffb53-4dc4-477f-a4aa-6aec6a8c44f4
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcwODA4NDgsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiVVNFUiIsIlNVUFBMSUVSIiwiTU9ERVJBVE9SIiwiU1VQRVJfQURNSU4iLCJBRE1JTiJdLCJleHAiOjE3MDc5NDQ4NDgsImlzcyI6InRoaW5rIHN0b3JlIn0.lfe5MAFj4vSSCdFjprEoKM0a2zvZvYfHlfBgR_T83nwSxphElv8wgjDYZjHkqU1fg4y3B4Yr7K3EgyzczrDpDA
 Content-Type: application/json
 
 ###
-DELETE localhost:8080/api/v1/cart/delete/dec9626f-2f73-4f1e-904f-f4eb789e44b2
+DELETE localhost:8082/api/v1/basket/delete/dec9626f-2f73-4f1e-904f-f4eb789e44b2
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcwODA4NDgsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiVVNFUiIsIlNVUFBMSUVSIiwiTU9ERVJBVE9SIiwiU1VQRVJfQURNSU4iLCJBRE1JTiJdLCJleHAiOjE3MDc5NDQ4NDgsImlzcyI6InRoaW5rIHN0b3JlIn0.lfe5MAFj4vSSCdFjprEoKM0a2zvZvYfHlfBgR_T83nwSxphElv8wgjDYZjHkqU1fg4y3B4Yr7K3EgyzczrDpDA
 
 
 ###
 
-GET http://localhost:8080/api/v1/cart/get-cart-books
+GET http://localhost:8082/api/v1/basket/get-basket-books
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcwODA4NDgsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiVVNFUiIsIlNVUFBMSUVSIiwiTU9ERVJBVE9SIiwiU1VQRVJfQURNSU4iLCJBRE1JTiJdLCJleHAiOjE3MDc5NDQ4NDgsImlzcyI6InRoaW5rIHN0b3JlIn0.lfe5MAFj4vSSCdFjprEoKM0a2zvZvYfHlfBgR_T83nwSxphElv8wgjDYZjHkqU1fg4y3B4Yr7K3EgyzczrDpDA
 
 ###
 
-GET http://localhost:8080/api/v1/cart/get-purchased-books
+GET http://localhost:8082/api/v1/basket/get-purchased-books
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcwODA4NDgsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiVVNFUiIsIlNVUFBMSUVSIiwiTU9ERVJBVE9SIiwiU1VQRVJfQURNSU4iLCJBRE1JTiJdLCJleHAiOjE3MDc5NDQ4NDgsImlzcyI6InRoaW5rIHN0b3JlIn0.lfe5MAFj4vSSCdFjprEoKM0a2zvZvYfHlfBgR_T83nwSxphElv8wgjDYZjHkqU1fg4y3B4Yr7K3EgyzczrDpDA
 
-###Get cart
-GET localhost:8080/api/v1/cart/open/get-all
+###Get basket
+GET localhost:8082/api/v1/basket/open/get-all
 
 ### Get By Id
-GET http://localhost:8080/api/v1/cart/open/get-by-id/88759f49-49aa-45a7-bae9-9f76f0f0bfd4
+GET http://localhost:8082/api/v1/basket/open/get-by-id/88759f49-49aa-45a7-bae9-9f76f0f0bfd4
 
 
 ###
-GET http://localhost:8080/api/v1/cart/open/get-all-by-category-id/dec9626f-2f73-4f1e-904f-f4eb789e44b2
+GET http://localhost:8082/api/v1/basket/open/get-all-by-category-id/dec9626f-2f73-4f1e-904f-f4eb789e44b2
 
 

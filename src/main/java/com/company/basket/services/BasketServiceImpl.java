@@ -106,6 +106,8 @@ public class BasketServiceImpl implements BasketService {
                     .bookId(book.id())
                     .build();
 
+            basketRepository.save(cart);
+
             return new ApiResponse<>(true, toDto(cart));
         }
 
