@@ -21,7 +21,7 @@ public class BasketController {
     private final BasketService basketService;
 
     @PostMapping("/create")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<ApiResponse<BasketResp>> create(
             @Valid @RequestBody BasketCr basketCr
     ) {
@@ -29,7 +29,7 @@ public class BasketController {
     }
 
     @PutMapping("/buy/{id}")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<ApiResponse<BasketResp>> update(
             @PathVariable UUID id
     ) {
@@ -37,7 +37,7 @@ public class BasketController {
     }
 
     @DeleteMapping("/delete/{id}")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<ApiResponse<String>> delete(
             @PathVariable UUID id
     ) {
@@ -45,22 +45,22 @@ public class BasketController {
     }
 
     @GetMapping("/get-by-id/{id}")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<ApiResponse<BasketResp>> getById(
             @PathVariable UUID id
     ) {
         return ResponseEntity.ok(basketService.getById(id));
     }
 
-    @GetMapping("/get-cart-books")
-    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/get-basket-books")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<ApiResponse<List<BasketResp>>> getAllByOwner() {
         return ResponseEntity.ok(basketService.getAllByOwner());
     }
 
 
     @GetMapping("/get-purchased-books")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<ApiResponse<List<BasketResp>>> getAllPurchasedBooks() {
         return ResponseEntity.ok(basketService.getAllPurchasedBooks());
     }

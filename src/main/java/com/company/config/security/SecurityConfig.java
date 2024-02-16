@@ -39,6 +39,7 @@ public class SecurityConfig {
             "/api/v1/attach/**",
             "/api/v1/category/open/**",
             "/api/v1/book/open/**",
+            "/api/v1/basket/open/**",
 
     };
 
