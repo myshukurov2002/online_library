@@ -9,6 +9,7 @@ import com.company.basket.entities.BasketEntity;
 import com.company.basket.repositories.BasketRepository;
 import com.company.config.i18n.MessageService;
 import com.company.config.security.utils.securityUtil;
+import com.company.expections.exp.AppBadRequestException;
 import com.company.expections.exp.DuplicateItemException;
 import com.company.expections.exp.ItemNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -95,6 +96,14 @@ public class BasketServiceImpl implements BasketService {
 
         } catch (ItemNotFoundException e) {
 
+            basketRepository
+                    .findByBookIdAndUserIdAndVisibilityTrue(id, securityUtil.getCurrentUserId())
+                    .ifPresent(b -> {
+                        if (b.getCartStatus()) {
+                            throw new DuplicateItemException();
+                        }
+                    });
+
             BookResp book = bookService
                     .getById(id)
                     .data();
@@ -111,6 +120,10 @@ public class BasketServiceImpl implements BasketService {
             return new ApiResponse<>(true, toDto(cart));
         }
 
+        if (cart.getCartStatus()) {
+
+            return new ApiResponse<>(false, "book.already.purchased");
+        }
         cart.setCartStatus(true);
         basketRepository.save(cart);
 

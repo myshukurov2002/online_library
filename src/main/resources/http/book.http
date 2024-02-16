@@ -1,16 +1,16 @@
 ### Create book
 POST localhost:8082/api/v1/book/create
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcwODA4NDgsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiVVNFUiIsIlNVUFBMSUVSIiwiTU9ERVJBVE9SIiwiU1VQRVJfQURNSU4iLCJBRE1JTiJdLCJleHAiOjE3MDc5NDQ4NDgsImlzcyI6InRoaW5rIHN0b3JlIn0.lfe5MAFj4vSSCdFjprEoKM0a2zvZvYfHlfBgR_T83nwSxphElv8wgjDYZjHkqU1fg4y3B4Yr7K3EgyzczrDpDA
+Authorization:Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDgwODkxNzcsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiTU9ERVJBVE9SIiwiU1VQRVJfQURNSU4iLCJVU0VSIiwiQURNSU4iXSwiZXhwIjoyNjU0MTY5MTc3LCJpc3MiOiJ0aGluayBzdG9yZSJ9.kwoe7LGYgGYWmP3GyO9MWPRv2Ub6Dn6dZ4mlQs3zszqbb-mvGOn3kLy0vjKP9t8aHVN18QTsMkJ7B0JoR_sgVg
 Content-Type: application/json
 
 {
-  "title": "Latta",
-  "author": "Latta",
-  "description": "Latta",
-  "price": "5600",
-  "categoryId": "bcd3d8e0-889d-44a1-8e75-e6b995cfd5ac",
-  "photoId": "07d47264-269b-4731-9003-f6f325f13d3b",
-  "pdfId": "36d78dd9-5fec-4384-a7b4-f94ab7f8b03b"
+  "title": "Katta",
+  "author": "Katta",
+  "description": "Katta",
+  "price": "6600",
+  "categoryId": "fb6402c7-9b1b-4885-beb7-09ffb2910072",
+  "photoId": "f9cae48f-396e-41bb-ab3f-64a5df32b5ff",
+  "pdfId": "79b0769b-0e56-4794-a16d-f32909d6e1d9"
 }
 
 
