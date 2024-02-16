@@ -30,7 +30,7 @@ DELETE localhost:8082/api/v1/book/delete/dec9626f-2f73-4f1e-904f-f4eb789e44b2
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MDcwODA4NDgsImlkIjoiNTUwZTg0MDAtZTI5Yi00MWQ0LWE3MTYtNDQ2NjU1NDQwMDAwIiwicm9sZXMiOlsiVVNFUiIsIlNVUFBMSUVSIiwiTU9ERVJBVE9SIiwiU1VQRVJfQURNSU4iLCJBRE1JTiJdLCJleHAiOjE3MDc5NDQ4NDgsImlzcyI6InRoaW5rIHN0b3JlIn0.lfe5MAFj4vSSCdFjprEoKM0a2zvZvYfHlfBgR_T83nwSxphElv8wgjDYZjHkqU1fg4y3B4Yr7K3EgyzczrDpDA
 
 ###Get book
-GET localhost:8082/api/v1/book/open/get-all
+GET localhost:8080/api/v1/book/open/get-all
 
 ### Get By Id
 GET http://localhost:8082/api/v1/book/open/get-by-id/88759f49-49aa-45a7-bae9-9f76f0f0bfd4

@@ -3,11 +3,13 @@ package com.company.book.entities;
 
 import com.company.attach.entity.AttachEntity;
 import com.company.base.BaseEntity;
+import com.company.basket.entities.BasketEntity;
 import com.company.category.entities.CategoryEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 @Setter
@@ -74,6 +76,11 @@ public class BookEntity extends BaseEntity {
     )
     private UUID pdfId;
 
+    @OneToMany(
+            mappedBy = "book"
+    )
+    List<BasketEntity> baskets;
+
     @Override
     public void setVisibility(Boolean visibility) {
         super.setVisibility(visibility);
@@ -82,6 +89,10 @@ public class BookEntity extends BaseEntity {
 
             photo.setVisibility(false);
             pdf.setVisibility(false);
+
+            for (BasketEntity basket : baskets) {
+                basket.setVisibility(false);
+            }
         }
     }
 }
